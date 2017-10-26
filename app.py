@@ -38,11 +38,13 @@ def webhook():
 						messaging_text = 'no text'
 					
 					response = None
-					
 					entity, value = wit_response(messaging_text)
 					
 					if entity == 'greetings':
 						response = "გამარჯობა!"
+						
+					if response == None:
+						response = "ბოდიში, ვერ გავიგე?"
 					bot.send_text_message(sender_id, response)
 	
 	return "ok", 200
