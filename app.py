@@ -31,6 +31,9 @@ def webhook():
 				sender_id = messaging_event['sender']['id']
 				recipient_id = messaging_event['recipient']['id']
 				
+				# Names
+				sender_name = messaging_event['sender']
+				
 				if messaging_event.get('message'):
 					if 'text' in messaging_event['message']:
 						messaging_text = messaging_event['message']['text']
@@ -40,11 +43,11 @@ def webhook():
 					response = None
 					entity, value = wit_response(messaging_text)
 					
-					if entity == 'greetings':
-						response = "გამარჯობა!"
+					if entity == 'greeting_keys':
+						response = "გამარჯობა {}!".format(sender_name)
 						
 					if response == None:
-						response = "ბოდიში, ვერ გავიგე?"
+						response = "{} ბოდიში, ვერ გავიგე?".format(sender_name)
 					bot.send_text_message(sender_id, response)
 	
 	return "ok", 200
