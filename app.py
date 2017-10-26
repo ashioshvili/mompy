@@ -35,7 +35,8 @@ def webhook():
 				# Names
 				source = 'https://graph.facebook.com/v2.6/' + sender_id + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN
 				r = urllib.request.urlopen(source)
-				sender_name = r.read()
+				sender_n = r.read()
+				sender_name = sender_n['first_name'] + " " + sender_n['last_name']
 				
 				if messaging_event.get('message'):
 					if 'text' in messaging_event['message']:
@@ -47,7 +48,7 @@ def webhook():
 					entity, value = wit_response(messaging_text)
 					
 					if entity == 'greeting_keys':
-						response = "გამარჯობა {}".format(sender_name)
+						response = "გამარჯობა {}!".format(sender_name)
 						
 					if response == None:
 						response = "{} ბოდიში, ვერ გავიგე?".format(sender_name)
