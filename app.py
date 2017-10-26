@@ -2,7 +2,7 @@ import os, sys
 from flask import Flask, request
 from utils import wit_response
 from pymessenger import Bot
-import requests
+import urllib.request
 
 app = Flask(__name__)
 
@@ -34,7 +34,8 @@ def webhook():
 				
 				# Names
 				source = 'https://graph.facebook.com/v2.6/' + sender_id + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN
-				r = requests.get(source)
+				r = urllib.request.urlopen(source)
+				sender_name = r.read()
 				
 				if messaging_event.get('message'):
 					if 'text' in messaging_event['message']:
@@ -46,7 +47,7 @@ def webhook():
 					entity, value = wit_response(messaging_text)
 					
 					if entity == 'greeting_keys':
-						response = "გამარჯობა {}".format(r)
+						response = "გამარჯობა {}".format(sender_name)
 						
 					if response == None:
 						response = "{} ბოდიში, ვერ გავიგე?".format(sender_name)
