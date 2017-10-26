@@ -16,5 +16,4 @@ def wit_response(message_text):
 		pass
 	return (entity, value)
 
-	
-print(wit_response("გამარჯობა"))
+#print(wit_response("გამარჯობა"))
