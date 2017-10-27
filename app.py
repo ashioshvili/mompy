@@ -34,7 +34,7 @@ def webhook():
 				recipient_id = messaging_event['recipient']['id']
 				
 				# Names
-				source = 'https://graph.facebook.com/v2.6/' + sender_id + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN
+				source = 'https://graph.facebook.com/v2.6/' + str(sender_id) + '?fields=first_name,last_name&access_token=' + str(PAGE_ACCESS_TOKEN)
 				r = urllib.request.urlopen(source)
 				sender_n = str(r.read())
 				sender_na =  sender_n[1:]
