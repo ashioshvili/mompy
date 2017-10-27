@@ -50,7 +50,7 @@ def webhook():
 						sender_na =  sender_n[1:]
 						sender_nam = sender_na.replace("'",'')
 						sender_nam1 = literal_eval(sender_nam)
-						sender_name = str(sender_nam1['first_name']))
+						sender_name = str(sender_nam1['first_name'])
 					
 					if entity == 'greeting_keys':
 						response = "გამარჯობა {}!".format(sender_name)
