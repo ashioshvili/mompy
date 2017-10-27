@@ -42,14 +42,15 @@ def webhook():
 					response = None
 					entity, value = wit_response(messaging_text)
 					
-					# Names
-					source = 'https://graph.facebook.com/v2.6/' + str(sender_id) + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN
-					r = urllib.request.urlopen(source)
-					sender_n = str(r.read())
-					sender_na =  sender_n[1:]
-					sender_nam = sender_na.replace("'",'')
-					sender_nam1 = literal_eval(sender_nam)
-					sender_name = str(sender_nam1['first_name']) + " " + str(sender_nam1['last_name'])
+					if len(entity) > 0:
+						# Names
+						source = 'https://graph.facebook.com/v2.6/' + str(sender_id) + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN
+						r = urllib.request.urlopen(source)
+						sender_n = str(r.read())
+						sender_na =  sender_n[1:]
+						sender_nam = sender_na.replace("'",'')
+						sender_nam1 = literal_eval(sender_nam)
+						sender_name = str(sender_nam1['first_name']) + " " + str(sender_nam1['last_name'])
 					
 					if entity == 'greeting_keys':
 						response = "გამარჯობა {}!".format(sender_name)
