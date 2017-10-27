@@ -42,14 +42,15 @@ def webhook():
 					response = None
 					entity, value = wit_response(messaging_text)
 					
-					if sender_id != 1928306037421083:
+					if sender_id != '1928306037421083':
 						# Names
 						source = 'https://graph.facebook.com/v2.6/' + str(sender_id) + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN
 						r = urllib.request.urlopen(source)
 						sender_n = r.read()
-						sender_na =  sender_n[1:]
-						sender_nam = sender_na.replace("'",'')
-						sender_nam1 = literal_eval(sender_nam)
+						#sender_na =  sender_n[1:]
+						#sender_nam = sender_na.replace("'",'')
+						#sender_nam1 = literal_eval(sender_nam)
+						sender_nam1 = literal_eval(sender_n.decode('ascii'))
 						sender_name = str(sender_nam1['first_name'])
 					
 					if entity == 'greeting_keys':
