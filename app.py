@@ -42,7 +42,7 @@ def webhook():
 					response = None
 					entity, value = wit_response(messaging_text)
 					
-					if len(str(entity)) > 0:
+					"""if len(str(entity)) > 0:
 						# Names
 						source = 'https://graph.facebook.com/v2.6/' + str(sender_id) + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN
 						r = urllib.request.urlopen(source)
@@ -50,13 +50,13 @@ def webhook():
 						sender_na =  sender_n[1:]
 						sender_nam = sender_na.replace("'",'')
 						sender_nam1 = literal_eval(sender_nam)
-						sender_name = str(sender_nam1['first_name']) + " " + str(sender_nam1['last_name'])
+						sender_name = str(sender_nam1['first_name']) + " " + str(sender_nam1['last_name'])"""
 					
 					if entity == 'greeting_keys':
-						response = "გამარჯობა {}!".format(sender_name)
+						response = "გამარჯობა "#{}!".format(sender_name)
 						
 					if response == None:
-						response = "ბოდიში {}, ვერ გავიგე?".format(sender_name)
+						response = "ბოდიში "#{}, ვერ გავიგე?".format(sender_name)
 					bot.send_text_message(sender_id, response)
 	
 	return "ok", 200
