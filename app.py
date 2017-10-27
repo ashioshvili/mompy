@@ -40,7 +40,7 @@ def webhook():
 				sender_na =  sender_n[1:]
 				sender_nam = sender_na.replace("'",'')
 				sender_nam1 = literal_eval(sender_nam)
-				sender_name = sender_nam1['first_name'] + " " + sender_nam1['last_name']
+				sender_name = str(sender_nam1['first_name']) + " " + str(sender_nam1['last_name'])
 				
 				if messaging_event.get('message'):
 					if 'text' in messaging_event['message']:
