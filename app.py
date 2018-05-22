@@ -40,11 +40,12 @@ def webhook():
 						messaging_text = 'no text'
 					
 					def getSenderName(id_,token_):
-						source = 'https://graph.facebook.com/v2.6/{id}?fields=first_name,last_name&access_token={token}'.format(id=id_,token=token_)
+						#source = 'https://graph.facebook.com/v2.6/{id}?fields=first_name,last_name&access_token={token}'.format(id=id_,token=token_)
+						source = 'https://graph.facebook.com/{id}?fields=name&access_token={token}'.format(id=id_,token=token_)
 						r = urllib.request.urlopen(source)
 						sender_n = r.read()
 						sender_list = literal_eval(sender_n.decode('ascii'))
-						sender_name = str(sender_list['first_name'])
+						sender_name = str(sender_list['name'])
 						return sender_name
 					
 					#response = "test"
