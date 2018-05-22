@@ -7,7 +7,7 @@ from ast import literal_eval
 
 app = Flask(__name__)
 
-PAGE_ACCESS_TOKEN = "EAAFFJcj6snUBADU8srb5sifA0JHide7NFme7MUTVgFIf8yZCB4S3qFd9CD3TB3K4nTc9SmtD4otDCAA09CZAxzND87od5cBDRveZCrWnmu8bba6uoo2QmUgWCMbZAgaZCdRc5ihXZB0dbZBmZCatpwRaGQoPRNO1BBA4YmCPr8wAEsMRf3gZAaid6"
+PAGE_ACCESS_TOKEN = "EAAeOZBTKeCCcBAIi1YqsoFuffZCT4CZAxQ8xWe4JgQZBqFZAnqof0WoNhmn5qmvuoxON6mZBs3pkMbgDNgdWgNZCr91VKQcXRs3CHwgz0XFCFFcp7zHQBi2C61q5UyTmes4qUZAXDZBtwxrehYQZAmwZAoUwD4gDi8J9jHlhIb2Dz6e271f8A5PX6PC"
 
 bot = Bot(PAGE_ACCESS_TOKEN)
 
@@ -15,7 +15,7 @@ bot = Bot(PAGE_ACCESS_TOKEN)
 def verify():
 	#Webhook verification
 	if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
-		if not request.args.get("hub.verify_token") == "hello":
+		if not request.args.get("hub.verify_token") == "a1B2c3E4f5":
 			return "Verification token mismatch", 403
 		return request.args["hub.challenge"], 200
 	return "OK", 200
