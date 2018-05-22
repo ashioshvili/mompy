@@ -39,17 +39,18 @@ def webhook():
 					else:
 						messaging_text = 'no text'
 					
-					def getSenderName(sender_id):
-						source = 'https://graph.facebook.com/v2.6/' + str(sender_id) + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN
+					def getSenderName(id_,token_):
+						source = 'https://graph.facebook.com/v2.6/{id}?fields=first_name,last_name&access_token={token}'.format(id=id_,token=token_)
 						r = urllib.request.urlopen(source)
 						sender_n = r.read()
 						sender_list = literal_eval(sender_n.decode('ascii'))
 						sender_name = str(sender_list['first_name'])
 						return sender_name
 					
-					response = "test"
-					#sender_name = getSenderName(sender_id)
-					#response = "Hello {0}, {1}".format(sender_name,messaging_text)
+					#response = "test"
+					sender_name = getSenderName(sender_id,PAGE_ACCESS_TOKEN)
+					recipient_name = getSenderName(recipient_id,PAGE_ACCESS_TOKEN)
+					response = "Hello {sname},\n{answr}".format(sname=sender_name,answr=messaging_text)
 					bot.send_text_message(sender_id, response)
 					
 					"""
