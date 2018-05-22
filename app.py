@@ -39,6 +39,19 @@ def webhook():
 					else:
 						messaging_text = 'no text'
 					
+					def getSenderName(sender_id):
+						source = 'https://graph.facebook.com/v2.6/' + str(sender_id) + '?fields=first_name,last_name&access_token=' + PAGE_ACCESS_TOKEN
+						r = urllib.request.urlopen(source)
+						sender_n = r.read()
+						sender_list = literal_eval(sender_n.decode('ascii'))
+						sender_name = str(sender_list['first_name'])
+						return sender_name
+					
+					sender_name = getSenderName(sender_id)
+					response = "Hello {0}, {1}".format(sender_name,messaging_text)
+					bot.send_text_message(sender_id, response)
+					
+					"""
 					response = None
 					entity, value = wit_response(messaging_text)
 					
@@ -63,6 +76,7 @@ def webhook():
 					if response == None:
 						response = "ბოდიში {}, '{}' ჯერ არ ვიცი რას ნიშნავს :)".format(sender_name,noresponse_text)
 					bot.send_text_message(sender_id, response)
+					"""
 	
 	return "ok", 200
 	
