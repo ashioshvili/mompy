@@ -47,8 +47,9 @@ def webhook():
 						sender_name = str(sender_list['first_name'])
 						return sender_name
 					
-					sender_name = getSenderName(sender_id)
-					response = "Hello {0}, {1}".format(sender_name,messaging_text)
+					response = "test"
+					#sender_name = getSenderName(sender_id)
+					#response = "Hello {0}, {1}".format(sender_name,messaging_text)
 					bot.send_text_message(sender_id, response)
 					
 					"""
